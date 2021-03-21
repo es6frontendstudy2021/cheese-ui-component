@@ -82,6 +82,7 @@ const resetCss = css`
   time,
   mark,
   audio,
+  button,
   video {
     margin: 0;
     padding: 0;
@@ -89,6 +90,7 @@ const resetCss = css`
     font-size: 100%;
     font: inherit;
     vertical-align: baseline;
+    outline:none;
   }
 
   a:link {
