@@ -1,16 +1,3 @@
-import '@emotion/react';
-
-const theme = {
-  color: {
-    primary700: '#1565C0',
-    primary500: '#2196F3',
-    gray000: '#FFFFFF',
-    gray600: '#939FA5',
-    gray900: '#323D45',
-    warning: '#FFA000',
-  },
-};
-
 /*
 reference : 2014 Material Design color palettes in https://material.io/design/color/the-color-system.html#tools-for-picking-colors
 colorTool : https://material.io/resources/color/#!/?view.left=0&view.right=0
@@ -312,5 +299,5 @@ const COLOR = {
   White: '#FFFFFF',
 };
 
-export { theme };
-export default theme;
+export { COLOR };
+export default COLOR;
