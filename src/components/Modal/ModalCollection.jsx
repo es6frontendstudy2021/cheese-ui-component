@@ -1,6 +1,9 @@
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 import styled from '@emotion/styled';
-import SimpleModal from './SimpleModal';
+import SimpleModalDemo from './SimpleModal/demo/index';
+import TransitionModalDemo from './TransitionsModal/demo/index';
+
+import Modal from './index';
 
 /** style */
 const ModalCollectionSection = styled.section`
@@ -20,62 +23,36 @@ const Title = styled.h1`
   letter-spacing: 0.00735em;
 `;
 
-const ModalOptions = styled.section`
-  display: flex;
-  flex-direction: column;
+const SubTitle = styled.h2`
+  font-size: 30px;
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  font-weight: 400;
+  line-height: 1.235;
+  letter-spacing: 0.00735em;
 `;
 
-const ModalOptionLabel = styled.label`
-  margin: 5px 0px;
-`;
+export default function ModalCollection() {
+  const [open, setOpen] = React.useState(false);
 
-const ShowUIButton = styled.button`
-  margin-top: 20px;
-  padding: 5px 15px;
-  border: 1px solid rgba(144, 202, 249, 0.5);
-  color: #90caf9;
-  background-color: transparent;
-`;
-
-export default function ModalCollection(props) {
-  const [visible, setVisible] = useState(false);
-  const [maskClosable, setMaskClosable] = useState(true);
-
-  const openModal = useCallback(() => {
-    setVisible(true);
-  }, []);
-
-  const closeModal = useCallback(() => {
-    setVisible(false);
-  }, []);
-
-  const toggleMaskClosable = useCallback(() => {
-    setMaskClosable(!maskClosable);
-  }, [maskClosable]);
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <ModalCollectionSection>
+      {/* Modal Test */}
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+      ></Modal>
+
       <Title>Modal</Title>
-      <ModalOptions>
-        <ModalOptionLabel htmlFor="maskClosable">
-          mask closable
-          <input
-            id="maskClosable"
-            type="checkbox"
-            onChange={toggleMaskClosable}
-            checked={maskClosable}
-          />
-        </ModalOptionLabel>
-      </ModalOptions>
-      <ShowUIButton onClick={openModal}>open modal</ShowUIButton>
-      <SimpleModal
-        visible={visible}
-        onClose={closeModal}
-        maskClosable={maskClosable}
-      >
-        <h1>MODAL TITLE</h1>
-        <p>MODAL CONTENT</p>
-      </SimpleModal>
+      <SubTitle>Simple Modal</SubTitle>
+      <SimpleModalDemo></SimpleModalDemo>
+      <SubTitle>Transitions Modal</SubTitle>
+      <TransitionModalDemo></TransitionModalDemo>
     </ModalCollectionSection>
   );
 }
