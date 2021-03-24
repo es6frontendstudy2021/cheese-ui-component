@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import styled from '@emotion/styled';
-import Modal from './index';
+import SimpleModal from './SimpleModal';
 
 /** style */
 const ModalCollectionSection = styled.section`
@@ -68,10 +68,14 @@ export default function ModalCollection(props) {
         </ModalOptionLabel>
       </ModalOptions>
       <ShowUIButton onClick={openModal}>open modal</ShowUIButton>
-      <Modal visible={visible} onClose={closeModal} maskClosable={maskClosable}>
+      <SimpleModal
+        visible={visible}
+        onClose={closeModal}
+        maskClosable={maskClosable}
+      >
         <h1>MODAL TITLE</h1>
         <p>MODAL CONTENT</p>
-      </Modal>
+      </SimpleModal>
     </ModalCollectionSection>
   );
 }

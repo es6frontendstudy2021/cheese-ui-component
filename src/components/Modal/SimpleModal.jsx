@@ -39,14 +39,14 @@ const CloseButton = styled.button`
   border: none;
 `;
 
-export default function Modal(props) {
+export default function SimpleModal(props) {
   const { visible, onClose, maskClosable, children } = props;
 
   const close = (e) => {
     onClose?.();
   };
 
-  Modal.defaultProps = {
+  SimpleModal.defaultProps = {
     closable: true,
     maskClosable: true,
     visible: false,
