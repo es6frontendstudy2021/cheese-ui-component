@@ -1,21 +1,43 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-const Button = ({ type, onClick, children }) => {
+const Button = ({ type, color, colorWeight = 500, onClick, children }) => {
   return (
-    <CustomButton type={type} onClick={onClick}>
+    <CustomButton
+      type={type}
+      color={color}
+      onClick={onClick}
+      colorWeight={colorWeight}
+    >
       {children}
     </CustomButton>
   );
 };
 
+const CustomButton = styled.button`
+  box-sizing: border-box;
+  display: inline-flex;
+  min-width: 64px;
+  min-height: 36px;
+  align-items: center;
+  justify-content: center;
+  margin: 8px 16px;
+  padding: 0px 16px;
+  border-radius: 4px;
+
+  ${({ type }) => buttonTypeStyle[type]};
+
+  background-color: ${({ theme, color, colorWeight }) =>
+    color && theme.colors[color][colorWeight]};
+  color: ${({ color }) => (color ? '#fff' : 'inherit')};
+`;
+
 const contained = css`
   :hover {
-    color: #fff;
-    background-color: black;
+    background-color: #6b2828;
   }
   :active {
-    background-color: blue;
+    background-color: #70707e;
   }
   :disable {
     background-color: #fff;
@@ -32,16 +54,17 @@ const texted = css`
 
 const outlined = css`
   border: 1px solid black;
+  background: none;
 
   :hover {
     color: #fff;
-    background-color: black;
+    background-color: #52c465;
   }
   :active {
-    background-color: blue;
+    background-color: #6c6c96;
   }
   :disable {
-    background-color: #fff;
+    background-color: #b48a8a;
   }
 `;
 
@@ -50,20 +73,6 @@ const buttonTypeStyle = {
   texted,
   outlined,
 };
-
-const CustomButton = styled.button`
-  box-sizing: border-box;
-  display: flex;
-  min-width: 64px;
-  min-height: 36px;
-  align-items: center;
-  justify-content: center;
-  margin: 8px 16px;
-  padding: 0px 16px;
-  border: none;
-
-  ${({ type }) => buttonTypeStyle[type]}
-`;
 
 export { Button };
 export default Button;
