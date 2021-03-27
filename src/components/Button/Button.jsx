@@ -1,11 +1,23 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-const Button = ({ type, color, colorWeight = 500, onClick, children }) => {
+const Button = ({
+  type,
+  color,
+  colorWeight = 500,
+  children,
+  padding,
+  margin,
+  onClick,
+  disabled = false,
+}) => {
   return (
     <CustomButton
+      disabled={disabled}
       type={type}
       color={color}
+      margin={margin}
+      padding={padding}
       onClick={onClick}
       colorWeight={colorWeight}
     >
@@ -28,8 +40,10 @@ const CustomButton = styled.button`
   ${({ type }) => buttonTypeStyle[type]};
 
   background-color: ${({ theme, color, colorWeight }) =>
-    color && theme.colors[color][colorWeight]};
+    color && colorWeight && theme.colors[color][colorWeight]};
   color: ${({ color }) => (color ? '#fff' : 'inherit')};
+  padding: ${({ padding }) => padding};
+  margin: ${({ margin }) => margin};
 `;
 
 const contained = css`
@@ -39,8 +53,8 @@ const contained = css`
   :active {
     background-color: #70707e;
   }
-  :disable {
-    background-color: #fff;
+  :disabled {
+    background-color: #eee;
   }
 `;
 
@@ -50,6 +64,12 @@ const texted = css`
   :hover {
     color: #fff;
   }
+  :active {
+    background-color: #6c6c96;
+  }
+  :disabled {
+    background-color: #b48a8a;
+  }
 `;
 
 const outlined = css`
@@ -57,14 +77,15 @@ const outlined = css`
   background: none;
 
   :hover {
-    color: #fff;
-    background-color: #52c465;
+    background-color: #3c6142;
   }
   :active {
     background-color: #6c6c96;
   }
-  :disable {
-    background-color: #b48a8a;
+  :disabled {
+    background-color: #240909;
+    color: #fff;
+    opacity: 0.3;
   }
 `;
 

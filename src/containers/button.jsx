@@ -39,6 +39,7 @@ const ButtonContainer = () => {
               >
                 Button
               </Button>
+
               {weights.map((colorWeight, idx) => (
                 <Button
                   key={colorWeight + '-' + idx}
@@ -50,6 +51,15 @@ const ButtonContainer = () => {
                   Button
                 </Button>
               ))}
+
+              <Button
+                type="contained"
+                color="primary"
+                disabled={true}
+                onClick={() => alert('primary')}
+              >
+                Button Disabled
+              </Button>
             </div>
           </div>
           <div>
@@ -67,12 +77,20 @@ const ButtonContainer = () => {
                   key={colorWeight + '-' + idx}
                   type="contained"
                   color="secondary"
-                  onClick={() => alert('primary' + colorWeight)}
+                  onClick={() => alert('secondary' + colorWeight)}
                   colorWeight={colorWeight}
                 >
                   Button
                 </Button>
               ))}
+              <Button
+                type="contained"
+                color="secondary"
+                disabled={true}
+                onClick={() => alert('secondary')}
+              >
+                Button Disabled
+              </Button>
             </div>
           </div>
         </div>
@@ -84,12 +102,25 @@ const ButtonContainer = () => {
       >
         <h2>Button Outlined</h2>
         <div>
-          <Button type="outlined">Default</Button>
-          <Button type="outlined" color="primary">
+          <Button type="outlined" onClick={() => alert('outlined')}>
+            Default
+          </Button>
+          <Button
+            type="outlined"
+            onClick={() => alert('outlined')}
+            color="primary"
+          >
             Primary
           </Button>
-          <Button type="outlined" color="secondary">
+          <Button
+            type="outlined"
+            onClick={() => alert('outlined')}
+            color="secondary"
+          >
             Secondary
+          </Button>
+          <Button type="outlined" disabled onClick={() => alert('outlined')}>
+            Default Disabled
           </Button>
         </div>
       </div>
