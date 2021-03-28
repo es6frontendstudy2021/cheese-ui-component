@@ -2,6 +2,9 @@
 
 Simple UI components created using React and css-in-js
 
+> Cheese-UI refers to the material UI and is currently under development. 
+> Plase wait until version 0.0.1 is released.
+
 <br/>
 
 ## Features
@@ -19,6 +22,21 @@ Simple UI components created using React and css-in-js
 | React   | A JavaScript library for building user interfaces          |
 | Emotion | The Next Generation of CSS-in-JS                           |
 | Webpack | A static module bundler for modern JavaScript applications |
+
+<br/>
+
+## Docs
+
+https://github.com/es6frontendstudy2021/cheese-ui-component/wiki
+
+<br/>
+
+## Todo
+
+- [ ] modal
+- [ ] button
+- [ ] switch
+- [ ] etc... (TBD)
 
 <br/>
 
