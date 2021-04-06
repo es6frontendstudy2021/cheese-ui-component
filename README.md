@@ -2,8 +2,8 @@
 
 Simple UI components created using React and css-in-js
 
-> Cheese-UI refers to the material UI and is currently under development. 
-> Plase wait until version 0.0.1 is released.
+> Cheese-UI refers to the material UI and is currently under development.
+> Please wait until version 0.0.1 is released.
 
 <br/>
 
