@@ -26,48 +26,25 @@ const Button = ({
   );
 };
 
-// const CustomButton = styled.button`
-//   box-sizing: border-box;
-//   display: inline-flex;
-//   min-width: 64px;
-//   min-height: 36px;
-//   align-items: center;
-//   justify-content: center;
-//   margin: 8px 16px;
-//   padding: 0px 16px;
-//   border-radius: 4px;
+const CustomButton = styled.button`
+  box-sizing: border-box;
+  display: inline-flex;
+  min-width: 64px;
+  min-height: 36px;
+  align-items: center;
+  justify-content: center;
+  margin: 8px 16px;
+  padding: 0px 16px;
+  border-radius: 4px;
 
-//   ${({ type }) => buttonTypeStyle[type]};
+  ${({ type }) => buttonTypeStyle[type]};
 
-//   background-color: ${({ theme, color, colorWeight }) =>
-//     color && colorWeight && theme.colors[color][colorWeight]};
-//   color: ${({ color }) => (color ? '#fff' : 'inherit')};
-//   padding: ${({ padding }) => padding};
-//   margin: ${({ margin }) => margin};
-// `;
-
-const CustomButton = styled.button(
-  ({ theme, color, type, colorWeight, padding, margin }) => {
-    return {
-      boxSizing: 'border-box',
-      display: 'inline-flex',
-      minWidth: '64px',
-      minHeight: '36px',
-      alignItems: 'center',
-      justifyContent: 'center',
-      margin: '8px 16px',
-      padding: '0px 16px',
-      borderRadius: '4px',
-      ...buttonTypeStyle[type],
-      backgroundColor: `${
-        color && colorWeight && theme.colors[color][colorWeight]
-      }`,
-      color: color ? '#fff' : 'inhergit',
-      padding,
-      margin,
-    };
-  },
-);
+  background-color: ${({ theme, color, colorWeight }) =>
+    color && colorWeight && theme.colors[color][colorWeight]};
+  color: ${({ color }) => (color ? '#fff' : 'inherit')};
+  padding: ${({ padding }) => padding};
+  margin: ${({ margin }) => margin};
+`;
 
 const contained = css`
   :hover {
