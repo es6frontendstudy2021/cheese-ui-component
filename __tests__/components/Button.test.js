@@ -1,9 +1,9 @@
 import { afterEach, beforeEach } from 'jest-circus';
 import { unmountComponentAtNode } from 'react-dom';
-import { act } from 'react-dom/test-utils';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import { Button } from '../../src/components/Button';
+import '@testing-library/jest-dom/extend-expect';
 
 let container = null;
 
@@ -24,7 +24,7 @@ describe('Components|Button', () => {
   });
 
   it('renders without any children', () => {
-    const { container, getByText } = render(<Button></Button>);
+    const { container } = render(<Button></Button>);
     expect(container.textContent).toBe('');
   });
 
@@ -32,5 +32,28 @@ describe('Components|Button', () => {
     const { container, getByText } = render(<Button>test</Button>);
     expect(container.textContent).toBe('test');
     expect(container.textContent).not.toBe('');
+    expect(getByText('test')).toHaveStyle('display:inline-flex');
+  });
+
+  it('type contained', () => {
+    const { container, getByText } = render(
+      <Button type="contained">contained</Button>,
+    );
+
+    expect(getByText('contained').className.includes('contained'));
+  });
+
+  it('type outlined', () => {
+    const { container, getByText } = render(
+      <Button type="outlined">outlined</Button>,
+    );
+    expect(getByText('outlined').className.includes('outlined'));
+  });
+
+  it('type texted', () => {
+    const { container, getByText } = render(
+      <Button type="texted">texted</Button>,
+    );
+    expect(getByText('texted').className.includes('texted'));
   });
 });
