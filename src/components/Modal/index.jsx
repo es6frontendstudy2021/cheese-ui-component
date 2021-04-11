@@ -9,7 +9,6 @@ const ModalComponent = styled.div`
   right: 0;
   bottom: 0;
   display: ${(props) => (props.visible ? 'flex' : 'none')};
-  /* display: flex; */
   align-items: center;
   justify-content: center;
 `;
@@ -42,21 +41,16 @@ const CloseButton = styled.button`
 `;
 
 export default function Modal(props) {
-  const { children } = props;
-  const [visible, setVisible] = useState(false);
-
-  const closeModal = useCallback(() => {
-    setVisible(false);
-  }, []);
+  const { open, onClose } = props;
 
   return (
     <>
       <ModalPortal>
-        <ModalComponent visible={visible}>
+        <ModalComponent visible={open}>
           <ModalOverlay />
           <ModalContainer>
-            <CloseButton onClick={closeModal}>X</CloseButton>
-            {children}
+            <CloseButton onClick={onClose}>X</CloseButton>
+            {props.children}
           </ModalContainer>
         </ModalComponent>
       </ModalPortal>
