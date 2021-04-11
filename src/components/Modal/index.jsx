@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useRef } from 'react';
 import styled from '@emotion/styled';
 import ModalPortal from './ModalPortal';
 
@@ -11,6 +11,8 @@ const ModalComponent = styled.div`
   display: ${(props) => (props.visible ? 'flex' : 'none')};
   align-items: center;
   justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
 `;
 
 const ModalOverlay = styled.div`
@@ -41,15 +43,33 @@ const CloseButton = styled.button`
 `;
 
 export default function Modal(props) {
-  const { open, onClose } = props;
+  const { open, onClose, timeout } = props;
+  const nodeRef = useRef(null);
+
+  const handleClose = () => {
+    // @TODO style handle function으로 분리
+    nodeRef.current.style.opacity = 0;
+
+    onClose();
+  };
+
+  if (open) {
+    if (!nodeRef) return;
+
+    timeout
+      ? setTimeout(() => {
+          nodeRef.current.style.opacity = 1;
+        }, timeout)
+      : (nodeRef.current.style.opacity = 1);
+  }
 
   return (
     <>
       <ModalPortal>
-        <ModalComponent visible={open}>
+        <ModalComponent visible={open} ref={nodeRef}>
           <ModalOverlay />
           <ModalContainer>
-            <CloseButton onClick={onClose}>X</CloseButton>
+            <CloseButton onClick={handleClose}>X</CloseButton>
             {props.children}
           </ModalContainer>
         </ModalComponent>
