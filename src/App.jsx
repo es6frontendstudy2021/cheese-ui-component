@@ -1,11 +1,10 @@
 import React from 'react';
-import ModalCollection from './components/Modal/ModalCollection';
-import { ButtonContainer } from './containers';
-
+import { ButtonContainer, ModalContainer } from './containers';
+import Modal from './components/Modal';
 function App() {
   return (
     <div>
-      <ModalCollection></ModalCollection>
+      <ModalContainer />
       <ButtonContainer />
     </div>
   );
