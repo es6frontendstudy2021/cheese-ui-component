@@ -1,21 +1,65 @@
-// @TODO Modal 컴포넌트 원형
-import React from 'react';
-import ReactDom from 'react-dom';
-import PropTypes from 'prop-types';
+import React, { useState, useCallback } from 'react';
+import styled from '@emotion/styled';
+import ModalPortal from './ModalPortal';
 
-const Modal = React.forwardRef(function Modal(props, refs) {
+const ModalComponent = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: ${(props) => (props.visible ? 'flex' : 'none')};
+  /* display: flex; */
+  align-items: center;
+  justify-content: center;
+`;
+
+const ModalOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+`;
+
+const ModalContainer = styled.div`
+  position: relative;
+  padding: 20px 30px;
+  width: 50vw;
+  color: #fff;
+  background-color: #424242;
+  z-index: 9;
+`;
+
+const CloseButton = styled.button`
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  width: 30px;
+  height: 30px;
+  border: none;
+`;
+
+export default function Modal(props) {
   const { children } = props;
-  const { open, ...rest } = props;
+  const [visible, setVisible] = useState(false);
 
-  const modal = React.useRef({});
-  const mountNodeRef = React.useRef(null);
-  const modalRef = React.useRef(null);
+  const closeModal = useCallback(() => {
+    setVisible(false);
+  }, []);
 
-  return <>I'm modal</>;
-});
-
-Modal.propTypes = {
-  open: PropTypes.bool.isRquired,
-};
-
-export default Modal;
+  return (
+    <>
+      <ModalPortal>
+        <ModalComponent visible={visible}>
+          <ModalOverlay />
+          <ModalContainer>
+            <CloseButton onClick={closeModal}>X</CloseButton>
+            {children}
+          </ModalContainer>
+        </ModalComponent>
+      </ModalPortal>
+    </>
+  );
+}
